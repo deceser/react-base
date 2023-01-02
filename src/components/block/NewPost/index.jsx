@@ -4,7 +4,7 @@ import InputUi from "../../UI/InputUi";
 import ButtonUi from "../../UI/ButtonUi";
 
 const NewPost = ({ create }) => {
-  const [createPost, setCreatePost] = React.useState({ title: "", description: "" });
+  const [createPost, setCreatePost] = React.useState({ title: "", content: "" });
 
   const addPost = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const NewPost = ({ create }) => {
       id: Date.now(),
     };
     create(newPost);
-    setCreatePost({ title: "", description: "" });
+    setCreatePost({ title: "", content: "" });
   };
 
   return (
@@ -28,8 +28,8 @@ const NewPost = ({ create }) => {
         <InputUi
           type="text"
           placeholder="Description post"
-          value={createPost.description}
-          onChange={(e) => setCreatePost({ ...createPost, description: e.target.value })}
+          value={createPost.content}
+          onChange={(e) => setCreatePost({ ...createPost, content: e.target.value })}
         />
         <ButtonUi onClick={addPost}>Create Post</ButtonUi>
       </form>

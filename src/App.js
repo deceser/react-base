@@ -1,9 +1,7 @@
 import React from "react";
-import NewPost from "./components/block/NewPost";
 
+import NewPost from "./components/block/NewPost";
 import PostList from "./components/block/Post/PostList";
-import ButtonUi from "./components/UI/ButtonUi";
-import InputUi from "./components/UI/InputUi";
 
 import "./index.scss";
 
