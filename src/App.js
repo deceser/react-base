@@ -4,17 +4,14 @@ import NewPost from "./components/block/NewPost";
 import PostList from "./components/block/Post/PostList";
 import SearchPost from "./components/block/SearchPost";
 import SortPost from "./components/block/SortPost";
+import { usePosts } from "./hooks/usePosts";
 
 import "./index.scss";
 
 function App() {
-  const [posts, setPosts] = React.useState([
-    { id: 1, title: "bReact", content: "cText content" },
-    { id: 2, title: "cReact", content: "bText content" },
-    { id: 3, title: "aReact", content: "aText content" },
-  ]);
-
+  const [posts, setPosts] = React.useState([]);
   const [filter, setFilter] = React.useState({ sort: "", search: "" });
+  const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search);
 
   // -----------------------------------------------------------------
 
@@ -34,33 +31,13 @@ function App() {
 
   // -----------------------------------------------------------------
 
-  // sort select post
-
-  const selectSortPost = React.useMemo(() => {
-    console.log("check func");
-    if (filter.sort) {
-      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-    }
-    return posts;
-  }, [filter.sort, posts]);
-
-  // -----------------------------------------------------------------
-
-  // search input post
-
-  const sortandsearch = React.useMemo(() => {
-    return selectSortPost.filter((post) => post.title.toLowerCase().includes(filter.search));
-  }, [filter.search, selectSortPost]);
-
-  // -----------------------------------------------------------------
-
   return (
     <div className="App">
       <NewPost create={createPost} />
       <hr />
       <SearchPost filter={filter} setFilter={setFilter} />
       <SortPost filter={filter} setFilter={setFilter} />
-      <PostList remove={removePost} posts={sortandsearch} title="List Posts #1" />
+      <PostList remove={removePost} posts={sortAndSearchPosts} title="List Posts #1" />
     </div>
   );
 }
