@@ -60,7 +60,7 @@ function App() {
       <hr />
       <SearchPost filter={filter} setFilter={setFilter} />
       <SortPost filter={filter} setFilter={setFilter} />
-      {sortandsearch.length ? <PostList remove={removePost} posts={sortandsearch} title="List Posts #1" /> : <h1>No Posts!</h1>}
+      <PostList remove={removePost} posts={sortandsearch} title="List Posts #1" />
     </div>
   );
 }
