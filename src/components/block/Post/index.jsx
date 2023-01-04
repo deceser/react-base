@@ -8,7 +8,7 @@ const Post = (props) => {
     <div className={styles.post}>
       <div className={styles.content}>
         <strong>
-          {props.number}. {props.post.title}
+          {props.post.id}. {props.post.title}
         </strong>
         <div className={styles.content}>{props.post.body}</div>
       </div>
