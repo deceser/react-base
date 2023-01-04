@@ -11,7 +11,7 @@ const SortPost = ({ filter, setFilter }) => {
         defaultvalue="Sort"
         options={[
           { value: "title", name: "Sort title" },
-          { value: "content", name: "Sort description" },
+          { value: "body", name: "Sort description" },
         ]}
       />
     </div>

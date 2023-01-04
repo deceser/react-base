@@ -10,7 +10,7 @@ const Post = (props) => {
         <strong>
           {props.number}. {props.post.title}
         </strong>
-        <div className={styles.content}>{props.post.content}</div>
+        <div className={styles.content}>{props.post.body}</div>
       </div>
       <div>
         <ButtonUi onClick={() => props.remove(props.post)}>Delete</ButtonUi>
