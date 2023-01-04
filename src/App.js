@@ -14,7 +14,7 @@ import "./index.scss";
 function App() {
   const [posts, setPosts] = React.useState([]);
   const [filter, setFilter] = React.useState({ sort: "", search: "" });
-  const [totalCountPosts, setTotalCountPosts] = React.useState(0);
+  const [totalPage, setTotalPage] = React.useState(0);
   const [limitPosts, setLimitPosts] = React.useState(10);
   const [page, setPage] = React.useState(1);
   const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search);
@@ -26,7 +26,8 @@ function App() {
   const [fetchPosts, loading, error] = useFetching(async () => {
     const res = await PostService.getAllPost(limitPosts, page);
     setPosts(res.data);
-    setTotalCountPosts(res.headers["x-total-count"]);
+    const totalCountPage = res.headers["x-total-count"];
+    setTotalPage(res.headers["x-total-count"]);
   });
 
   React.useEffect(() => {
