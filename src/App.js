@@ -8,27 +8,28 @@ import SortPost from "./components/block/SortPost";
 import PostService from "./API/PostService";
 import { usePosts } from "./hooks/usePosts";
 import { useFetching } from "./hooks/useFetching";
+import { pageCount } from "./utils/pages";
 
 import "./index.scss";
 
 function App() {
   const [posts, setPosts] = React.useState([]);
   const [filter, setFilter] = React.useState({ sort: "", search: "" });
-  const [totalPage, setTotalPage] = React.useState(0);
+  const [totalPages, setTotalPages] = React.useState(0);
   const [limitPosts, setLimitPosts] = React.useState(10);
   const [page, setPage] = React.useState(1);
   const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search);
 
   // -----------------------------------------------------------------
 
-  // response posts
-
   const [fetchPosts, loading, error] = useFetching(async () => {
     const res = await PostService.getAllPost(limitPosts, page);
     setPosts(res.data);
     const totalCountPage = res.headers["x-total-count"];
-    setTotalPage(res.headers["x-total-count"]);
+    setTotalPages(pageCount(totalCountPage, limitPosts));
   });
+
+  console.log(totalPages);
 
   React.useEffect(() => {
     fetchPosts();

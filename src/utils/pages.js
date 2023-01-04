@@ -1,3 +1,3 @@
-export const pageCount = (totalPage, limit) => {
-  return Math.ceil(totalPage / limit);
+export const pageCount = (totalCountPage, limitPosts) => {
+  return Math.ceil(totalCountPage / limitPosts);
 };
