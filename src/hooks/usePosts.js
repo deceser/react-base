@@ -1,17 +1,14 @@
 import React from "react";
 
-// custom hooks
-
 // sorted posts
 
 export const useSortedPosts = (posts, sort) => {
   const selectSortPost = React.useMemo(() => {
-    console.log("check func");
     if (sort) {
       return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]));
     }
     return posts;
-  }, [sort, posts]);
+  }, [posts, sort]);
 
   return selectSortPost;
 };
