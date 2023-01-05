@@ -4,11 +4,12 @@ import NewPost from "./components/block/NewPost";
 import PostList from "./components/block/Post/PostList";
 import SearchPost from "./components/block/SearchPost";
 import SortPost from "./components/block/SortPost";
+import Pagination from "./components/UI/PaginationUi";
 
 import PostService from "./API/PostService";
+import { pageCount } from "./utils/pages";
 import { usePosts } from "./hooks/usePosts";
 import { useFetching } from "./hooks/useFetching";
-import { pageCount } from "./utils/pages";
 
 import "./index.scss";
 
@@ -18,6 +19,7 @@ function App() {
   const [totalPages, setTotalPages] = React.useState(0);
   const [limitPosts, setLimitPosts] = React.useState(10);
   const [page, setPage] = React.useState(1);
+
   const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search);
 
   // -----------------------------------------------------------------
@@ -29,11 +31,9 @@ function App() {
     setTotalPages(pageCount(totalCountPage, limitPosts));
   });
 
-  console.log(totalPages);
-
   React.useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [page]);
 
   // -----------------------------------------------------------------
 
@@ -53,6 +53,14 @@ function App() {
 
   // -----------------------------------------------------------------
 
+  // current page
+
+  const changePage = (page) => {
+    setPage(page);
+  };
+
+  // -----------------------------------------------------------------
+
   return (
     <div className="App">
       <NewPost create={createPost} />
@@ -60,6 +68,7 @@ function App() {
       <SearchPost filter={filter} setFilter={setFilter} />
       <SortPost filter={filter} setFilter={setFilter} />
       {loading ? <h1>Loading...</h1> : <PostList remove={removePost} posts={sortAndSearchPosts} title="List Posts #1" />}
+      <Pagination page={page} totalPages={totalPages} changePage={changePage} />
     </div>
   );
 }
