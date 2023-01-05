@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  list-style: none;
+
+  a:-webkit-any-link {
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .active {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+  }
+}
