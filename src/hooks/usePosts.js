@@ -1,11 +1,11 @@
 import React from "react";
 
-// sorted posts
+// sorted posts string id, body, title
 
 export const useSortedPosts = (posts, sort) => {
   const selectSortPost = React.useMemo(() => {
     if (sort) {
-      return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]));
+      return [...posts].sort((a, b) => a[sort] - b[sort] || a[sort].localeCompare(b[sort]));
     }
     return posts;
   }, [posts, sort]);
@@ -15,7 +15,7 @@ export const useSortedPosts = (posts, sort) => {
 
 // -----------------------------------------------------------------
 
-// sorted and search posts
+// sorted and search posts title
 
 export const usePosts = (posts, sort, search) => {
   const selectSortPost = useSortedPosts(posts, sort);

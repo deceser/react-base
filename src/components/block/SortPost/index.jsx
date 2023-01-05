@@ -12,6 +12,7 @@ const SortPost = ({ filter, setFilter }) => {
         options={[
           { value: "title", name: "Sort title" },
           { value: "body", name: "Sort description" },
+          { value: "id", name: "Sort num" },
         ]}
       />
     </div>
