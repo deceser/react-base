@@ -2,13 +2,15 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Posts from "./pages/Posts";
-import About from "./pages/About";
+
+import { routes } from "./router";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/posts" element={<Posts />} />
-      <Route path="/about" element={<About />} />
+      {routes.map((route) => (
+        <Route key={route.path} path={route.path} element={<route.component />} />
+      ))}
       <Route path="*" element={<Posts />} />
     </Routes>
   );

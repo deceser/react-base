@@ -11,7 +11,7 @@ import { pageCount } from "../utils/pages";
 import { usePosts } from "../hooks/usePosts";
 import { useFetching } from "../hooks/useFetching";
 
-function App() {
+function Posts() {
   const [posts, setPosts] = React.useState([]);
   const [filter, setFilter] = React.useState({ sort: "", search: "" });
   const [totalPages, setTotalPages] = React.useState(0);
@@ -71,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default Posts;
